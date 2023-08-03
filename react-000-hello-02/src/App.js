@@ -16,7 +16,17 @@ function App() {
   useEffect(() => ajax, []);
 
   const bbsList = bbs.map((dto) => {
-    return <div>{dto.b_title}</div>;
+    return (
+      <>
+        <div>
+          {dto.b_image} {dto.b_title}
+        </div>
+
+        <div>
+          {dto.b_image} {dto.b_title}
+        </div>
+      </>
+    );
   });
   return (
     <>
