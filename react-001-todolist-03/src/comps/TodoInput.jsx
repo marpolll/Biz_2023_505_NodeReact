@@ -15,26 +15,26 @@ const TodoInput = (props) => {
   //   const [content, setContent] = useState("");
 
   // const [n1.n2] = ["한국", "일본"]
-  const { content, setContent, todoListAdd } = props;
-
-  // 위에서 처럼 한번에 처리
-  // const content1 = props.content
-  // const setContent = props.setContent
+  const { todo, setTodo, todoInput } = props;
 
   const inputChangeHandler = (e) => {
     const value = e.target.value;
-    setContent(value);
+    // setContent(value);
+    setTodo({ ...todo, content: value });
   };
 
   const btnClickHandler = (e) => {
     // 추가버튼을 클릭했을때 할일
-    todoListAdd(content);
-    setContent("");
+    todoInput(todo.content);
   };
 
   return (
     <div className="input">
-      <input placeholder="TODO" value={content} onChange={inputChangeHandler} />
+      <input
+        placeholder="TODO"
+        value={todo.content}
+        onChange={inputChangeHandler}
+      />
       {/* 
         jsx 주석
         본문에 tag 내에서 사용하는 주석문
@@ -47,8 +47,12 @@ const TodoInput = (props) => {
 
         react 에서는 disabled={true} 라는 속성으로 사용한다.
       */}
-      <button disabled={content.length < 2} onClick={btnClickHandler}>
-        저장
+      <button
+        disabled={todo.content.length < 2}
+        onClick={btnClickHandler}
+        className={todo.id ? "update" : ""}
+      >
+        {todo.id ? "변경" : "추가"}
       </button>
     </div>
   );
