@@ -1,5 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
+import "./css/main.css";
 import { useState, useEffect } from "react";
 
 const bbsURL = "http://localhost:8080/file/bbs/list";
@@ -23,7 +24,7 @@ function App() {
         </div>
 
         <div>
-          {dto.b_image} {dto.b_title}
+          {dto.b_content} {dto.b_title} {dto.b_nickname}
         </div>
       </>
     );
