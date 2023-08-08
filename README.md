@@ -10,6 +10,7 @@
 `nodejs.org` 사이트에서 NodeJS LTS 버전 다운로드 후 설치
 
 - windows 에서는 관리자 권한으로 cmd 창 열고 도구 설치
+- mac 에서는 su sudo -s
 
 1. `npm -g install npm` : nodeJS Package Manager 프로그램으로
    NodeJS 와 React 프로젝트에서 사용하는 여러가지 부수적

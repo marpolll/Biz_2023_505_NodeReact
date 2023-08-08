@@ -1,6 +1,7 @@
 import BBsItem from "./BBsItem";
 import { useState, useEffect } from "react";
 import "../css/BBS.css";
+import TInput from "./Input";
 
 const BBsList = () => {
   const [bbs, setBbs] = useState([]);
@@ -32,6 +33,7 @@ const BBsList = () => {
         </thead>
         <tbody>{bbsItemList}</tbody>
       </table>
+      <TInput />
     </>
   );
 };
