@@ -1,6 +1,5 @@
-import { useState, useRef, useContext } from "react";
+import { useState } from "react";
 import { filePreview, filesPreview } from "../modules/ImagePreview";
-import { bbsInsert } from "../modules/FetchModule";
 import css from "../css/BBsInput.module.css";
 import "../css/Test.css";
 import { useBBsContext } from "../provider/BBsProvider";
@@ -18,12 +17,12 @@ const BBsInput = () => {
 
   // const {bbs,setBbs} = useContext(어떤Store 에서)
 
-  const { bbs, setBBs } = useBBsContext();
+  const { bbs, setBBs, bbsInsertCB, imgRef, imgsRef } = useBBsContext();
 
   const [image, setImage] = useState("");
   const [images, setImages] = useState([]);
-  const imgRef = useRef(null);
-  const imgsRef = useRef(null);
+  // const imgRef = useRef(null);
+  // const imgsRef = useRef(null);
 
   const setMainImage = (image) => {
     setImage(image);
@@ -69,37 +68,33 @@ const BBsInput = () => {
    */
 
   const insertButtonClickHandler = async () => {
-    // alert("Hello");
-    // js 에서 제공하는 Http 객체다
-    const formData = new FormData();
-    const file = imgRef?.current.files[0];
-    const files = imgsRef.current.files;
-
-    // formData 에 bbs(JSON 객체)를 실어서 서버로 보낼떄는
-    // 객체를 직접 보낼수 없다.
-    // 객체를 Serialize(직렬화, 문자열화)
-    const bbsStr = JSON.stringify(bbs);
-
-    // node 의 router Upload 미들웨어에서 받을 이름
-    // 모든 파일 정보를 append()
-    // 대표이미지
-    formData.append("b_images", file);
-
-    // 갤러리 이미지들
-    for (let file of files) {
-      formData.append("b_images", file);
-    }
-    formData.append("bbs", bbsStr);
-
-    // formData.append("bbs", bbs);
-    // docu.querySelector("#b_img").files[0];
-    // formData.append("b_image", imgRef.current.files[0]);
-    // formData.append("b_nickname", bbs.b_nickname);
-    // formData.append("b_title", bbs.b_title);
-    // formData.append("b_content", bbs.b_content);
-
-    console.log(bbs, formData);
-    await bbsInsert(formData);
+    bbsInsertCB();
+    // // alert("Hello");
+    // // js 에서 제공하는 Http 객체다
+    // const formData = new FormData();
+    // const file = imgRef?.current.files[0];
+    // const files = imgsRef.current.files;
+    // // formData 에 bbs(JSON 객체)를 실어서 서버로 보낼떄는
+    // // 객체를 직접 보낼수 없다.
+    // // 객체를 Serialize(직렬화, 문자열화)
+    // const bbsStr = JSON.stringify(bbs);
+    // // node 의 router Upload 미들웨어에서 받을 이름
+    // // 모든 파일 정보를 append()
+    // // 대표이미지
+    // formData.append("b_images", file);
+    // // 갤러리 이미지들
+    // for (let file of files) {
+    //   formData.append("b_images", file);
+    // }
+    // formData.append("bbs", bbsStr);
+    // // formData.append("bbs", bbs);
+    // // docu.querySelector("#b_img").files[0];
+    // // formData.append("b_image", imgRef.current.files[0]);
+    // // formData.append("b_nickname", bbs.b_nickname);
+    // // formData.append("b_title", bbs.b_title);
+    // // formData.append("b_content", bbs.b_content);
+    // console.log(bbs, formData);
+    // await bbsInsert(formData);
   };
 
   return (
@@ -137,7 +132,9 @@ const BBsInput = () => {
 
       <div className={css.image_box}>
         <div>
-          <label htmlFor="main_image">대표이미지 선택하세요</label>
+          <label htmlFor="main_image" class="btn">
+            메인사진
+          </label>
 
           <input
             id="main_image"
@@ -152,8 +149,15 @@ const BBsInput = () => {
           </div>
         </div>
 
+        {/* <div> */}
+        {/* <label htmlFor="gallery_image">겔러리 이미지를 선택하세요</label> */}
         <div>
-          <label htmlFor="gallery_image">겔러리 이미지를 선택하세요</label>
+          {/* <button htmlFor="gallery_image" class="btn"> */}
+          <label htmlFor="gallery_image" class="btn">
+            이미지 업로드
+          </label>
+          {/* </button> */}
+          {/* </div> */}
           <input
             id="gallery_image"
             type="file"
