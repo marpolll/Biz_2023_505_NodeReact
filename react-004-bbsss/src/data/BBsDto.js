@@ -8,8 +8,8 @@ export const BBsDto = {
   b_date: "", // varchar(10)
   b_viewcount: 0, // long
 
-  // 대표이미지
   b_image: "",
   b_origin_image: "",
+
   m_files: [],
 };

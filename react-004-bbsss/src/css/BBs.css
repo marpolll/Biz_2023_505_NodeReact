@@ -8,16 +8,19 @@ div.image {
 input {
   display: none;
 }
+
 label {
   display: block;
   width: 100%;
   background-color: #ddd;
   text-align: center;
 }
+
 div.thumb {
   display: flex;
   flex-wrap: wrap;
   border: 1px solid blue;
+  justify-content: center;
 }
 
 div.input {
