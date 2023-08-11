@@ -85,7 +85,9 @@ router.post(
 );
 
 router.get("/list", async (req, res) => {
-  const bbsList = await BBS.findAll();
+  const bbsList = await BBS.findAll({
+    include: { model: F_FILES, as: "F_FILES", where: { f_seq: b_seq } },
+  });
   return res.json(bbsList);
 });
 

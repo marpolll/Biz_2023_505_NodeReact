@@ -140,7 +140,7 @@ body {
   padding: 17px 60px;
   margin: 0 auto;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  width: 30%;
+  width: 13%;
 }
 
 .btn label {
@@ -153,7 +153,7 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  height: 490%;
+  height: 480%;
   width: 140%;
   background: #78c7d2;
   -webkit-transition: all 0.5s ease-in-out;
