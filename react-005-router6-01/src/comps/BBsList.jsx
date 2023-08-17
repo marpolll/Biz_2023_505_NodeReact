@@ -1,4 +1,5 @@
 import { Table } from "../styled/BBsStyled";
+import BBsItem from "./BBsItem";
 
 /**
  * 원래 제공되는 react comps 인 table 에 style 를 적용하여
@@ -19,7 +20,11 @@ import { Table } from "../styled/BBsStyled";
 //   }
 // `;
 
-const BBsList = ({ children }) => {
+const BBsList = ({ bbsList }) => {
+  const bbsListItemView = bbsList?.map((item, index) => {
+    return <BBsItem item={item} key={item.id} seq={index} />;
+  });
+
   return (
     <Table>
       <thead>
@@ -31,7 +36,7 @@ const BBsList = ({ children }) => {
           <th>조회수</th>
         </tr>
       </thead>
-      <tbody>{children}</tbody>
+      <tbody>{bbsListItemView}</tbody>
     </Table>
   );
 };
