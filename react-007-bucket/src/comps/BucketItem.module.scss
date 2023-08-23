@@ -1,0 +1,12 @@
+.item.complete.bucket {
+  flex: 1;
+  font-size: 20px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.item.complete.bucket.line {
+  text-decoration: line-through;
+  text-decoration-color: red;
+  color: #999;
+}

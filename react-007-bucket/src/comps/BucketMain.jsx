@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import BucketSearch from "./BucketSearch";
-import { NavLink, useLoaderData, Outlet } from "react-router-dom";
+import { Outlet, redirect } from "react-router-dom";
 import { getBucketList, newBucket } from "../modules/bucketFetch";
+import BucketList from "./BucketList";
 
 const ASideBar = styled.aside`
   width: 25rem;
@@ -55,7 +56,7 @@ export const mainLoader = async () => {
 
 export const mainAction = async () => {
   const bucket = await newBucket();
-  return "";
+  return redirect(`/content/${bucket.id}/edit`);
 };
 
 // export default BucketMain = () => {
@@ -63,19 +64,19 @@ export const mainAction = async () => {
 // };
 
 const BucketMain = () => {
-  const { bucketList } = useLoaderData();
-  const bucketItemListView = bucketList.map((item) => {
-    return (
-      <li>
-        <NavLink to={`content/${item.id}`}>{item.bucket}</NavLink>
-      </li>
-    );
-  });
+  // const { bucketList } = useLoaderData();
+  // const bucketItemListView = bucketList.map((item) => {
+  //   return (
+  //     <li>
+  //       <NavLink to={`content/${item.id}`}>{item.bucket}</NavLink>
+  //     </li>
+  //   );
+  // });
   return (
     <>
       <ASideBar>
         <BucketSearch />
-        <UL>{bucketItemListView}</UL>
+        <BucketList />
       </ASideBar>
       <div>
         <h1>
