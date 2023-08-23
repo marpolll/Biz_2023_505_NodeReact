@@ -1,12 +1,9 @@
-.item.complete.bucket {
-  flex: 1;
+.bucket {
   font-size: 20px;
-  text-align: left;
-  cursor: pointer;
 }
 
-.item.complete.bucket.line {
-  text-decoration: line-through;
-  text-decoration-color: red;
-  color: #999;
+.bucket_line {
+  text-decoration: line-through !important;
+  text-decoration-color: red !important;
+  color: #999 !important;
 }

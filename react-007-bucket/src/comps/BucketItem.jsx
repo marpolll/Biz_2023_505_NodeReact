@@ -7,7 +7,7 @@ const BucketItem = ({ item }) => {
     <li>
       <NavLink
         to={`content/${item.id}`}
-        className={css.item.complete ? "bucket_line" : "bucket"}
+        className={item.complete ? css.bucket_line : css.bucket}
       >
         <img src={item.img_src || dImage} alt="" width="30px" height="30px" />
         {item.bucket}
