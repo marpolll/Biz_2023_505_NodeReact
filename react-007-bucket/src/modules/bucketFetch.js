@@ -25,12 +25,21 @@ export const newBucketDto = () => {
     stime: moment().format("HH:mm:ss"),
     bucket: "새로운 Bucket",
     complete: false,
+    favorite: false,
   };
   return bucketDto;
 };
 
-export const getBucketList = async () => {
+export const getBucketList = async (search = "") => {
   const bucketList = await localforage.getItem(LOCAL_DB);
+  if (search) {
+    search = search.toUpperCase();
+    const resultBucketList = bucketList.filter((item) => {
+      const bYes = item.bucket.toUpperCase().indexOf(search) > -1;
+      return bYes;
+    });
+    return resultBucketList;
+  }
   // DB에서 get한 데이터가 없으면 임시 데이터를 생성하고
   // DB에 insert 한 후 드 데이터를 return
   // if (!bucketList) {
@@ -48,7 +57,7 @@ export const getBucket = async (id) => {
   const bucketList = await localforage.getItem(LOCAL_DB);
   // bucketList 중에서 id 가 매개변수로 전달받은 값과 같은
   // 요소를 찾아서 추출하기
-  const bucket = bucketList.find((item) => item.id === id);
+  const bucket = bucketList?.find((item) => item.id === id);
   // bucketList 에서 데이터를 find 했는데 결과 값이 null 이거나
   // 또는 undefinded 인 경우도 있다.
   // 결과값이 여러가지 falsy 값일 경우 모두 null로 통일하여 return 하라

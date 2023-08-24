@@ -4,8 +4,8 @@
   & div.first {
     height: 1rem;
     & img {
-      width: 12rem;
-      height: 12rem;
+      width: 8rem;
+      height: 8rem;
       margin-left: 2rem;
       border-radius: 1.5rem;
       object-fit: contain;
@@ -20,12 +20,45 @@
       font-weight: 700;
       margin: 0;
       line-height: 1.2;
+      & form {
+        display: flex;
+        align-items: center;
+        margin: 0.25rem 1rem;
+        & button {
+          border: 0;
+          outline: none;
+          background-color: white;
+          box-shadow: none;
+          font-weight: 400;
+          font-size: 1.5rem;
+          padding: 0;
+          &:hover {
+            transform: scale(1.2);
+            cursor: pointer;
+          }
+        }
+        & button[value="false"] {
+          color: #eeb004;
+        }
+        & button[value="true"] {
+          color: #5146e4;
+        }
+      }
     }
     & div {
       display: flex;
       justify-content: flex-start;
       // flex item 들의 간격을 설정
       gap: 5px;
+    }
+  }
+  & button.delete {
+    &:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    &:disabled:hover {
+      box-shadow: none;
     }
   }
 }
