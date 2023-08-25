@@ -3,11 +3,11 @@ import dImage from "../assets/default.png";
 import Button from "../shareComps/Button";
 import css from "./BucketDetail.module.scss";
 import {
-  completeBucket,
+  // completeAction,
   deleteBucket,
   getBucket,
   saveBucket,
-} from "../modules/bucketFetch";
+} from "../modules/firebaseDBProvider";
 
 export const detailLoader = async ({ params }) => {
   // const id = params.id
@@ -20,12 +20,20 @@ export const detailLoader = async ({ params }) => {
 };
 
 export const completeAction = async ({ params }) => {
-  if (window.confirm("완료??")) {
-    await completeBucket(params.id);
-    return redirect("/");
-  }
+  const bucket = await getBucket(params.id);
+  console.log("Bucket", bucket);
+  const completBucket = { ...bucket, complete: !bucket.complete };
+  await saveBucket(completBucket);
   return redirect(`/content/${params.id}`);
 };
+
+// export const completeAction = async ({ params }) => {
+//   if (window.confirm("완료??")) {
+//     await completeBucket(params.id);
+//     return redirect("/");
+//   }
+//   return redirect(`/content/${params.id}`);
+// };
 
 export const deleteAction = async ({ params }) => {
   if (window.confirm("삭제할거??")) {

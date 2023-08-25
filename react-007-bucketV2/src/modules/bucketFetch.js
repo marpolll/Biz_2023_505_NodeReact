@@ -2,8 +2,9 @@
  * web browser 의 indexedDB 를 핸들링 하기 위한 react 3rd LIB
  */
 import localforage from "localforage";
-import uuid from "react-uuid";
-import moment from "moment";
+import { newBucketDto } from "./bucketDto";
+// import uuid from "react-uuid";
+// import moment from "moment";
 
 /**
  * 코딩에서 매직리터럴(매직스트링, 매직넘버) 금지!!
@@ -17,18 +18,18 @@ import moment from "moment";
  */
 const LOCAL_DB = "BUCKET_LIST";
 
-export const newBucketDto = () => {
-  const bucketDto = {
-    id: uuid(),
-    img_src: "",
-    sdate: moment().format("YYYY[-]MM[-]DD"),
-    stime: moment().format("HH:mm:ss"),
-    bucket: "새로운 Bucket",
-    complete: false,
-    favorite: false,
-  };
-  return bucketDto;
-};
+// export const newBucketDto = () => {
+//   const bucketDto = {
+//     id: uuid(),
+//     img_src: "",
+//     sdate: moment().format("YYYY[-]MM[-]DD"),
+//     stime: moment().format("HH:mm:ss"),
+//     bucket: "새로운 Bucket",
+//     complete: false,
+//     favorite: false,
+//   };
+//   return bucketDto;
+// };
 
 export const getBucketList = async (search = "") => {
   const bucketList = await localforage.getItem(LOCAL_DB);
@@ -91,16 +92,16 @@ export const newBucket = async () => {
   return bucketDto;
 };
 
-export const completeBucket = async (id) => {
-  const bucketList = await getBucketList();
-  const compBucketList = bucketList?.map((item) => {
-    if (item.id === id) {
-      return { ...item, complete: !item.complete };
-    }
-    return item;
-  });
-  await setBucketList(compBucketList);
-};
+// export const completeBucket = async (id) => {
+//   const bucketList = await getBucketList();
+//   const compBucketList = bucketList?.map((item) => {
+//     if (item.id === id) {
+//       return { ...item, complete: !item.complete };
+//     }
+//     return item;
+//   });
+//   await setBucketList(compBucketList);
+// };
 
 export const deleteBucket = async (id) => {
   const bucketList = await getBucketList();
