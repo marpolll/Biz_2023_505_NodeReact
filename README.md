@@ -20,7 +20,7 @@
 
 ## 사용하여 React 폴더에서 vsCode 열기
 
-- `nide --version` : 설치된 nodeJS 번전 확인
+- `node --version` : 설치된 nodeJS 버전 확인
 
 ## NodeJS 서버 만들기
 
